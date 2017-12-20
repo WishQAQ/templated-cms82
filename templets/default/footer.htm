@@ -1,0 +1,116 @@
+<!--底部开始-->
+<!--脚部嵌套模板-->
+<div class="footer">
+  <div class="footer_menu">
+    <div class="scyjbxjys" style="margin:16px 0 20px 0;"> <span>地址：{dede:global.cfg_add/} 邮箱：{dede:global.cfg_email/} 传真：{dede:global.cfg_fax/} 电话：{dede:global.cfg_tel/}</span> </div>
+  </div>
+</div>
+<!--脚部嵌套模板-->
+<div class="go-top dn" id="go-top"> <a href="javascript:;" class="go"></a> </div>
+<script type="text/javascript">
+//导航
+$('#nav-menu .header_content > li').hover(function(){
+	$(this).find('.list-unstyled').animate({ opacity:'show', height:'show' },200);
+	$(this).find('.nav-a').addClass('navhover');
+}, function() {
+	$('.list-unstyled').stop(true,true).hide();
+	$('.nav-a').removeClass('navhover');
+});
+
+//轮播
+(function() {
+  var defaultInd = 0;
+  var list = $('#js_ban_content').children();
+  var count = 0;
+  var change = function(newInd, callback) {
+    if (count) return;
+    count = 2;
+    $(list[defaultInd]).fadeOut(400,
+    function() {
+      count--;
+      if (count <= 0) {
+        if (start.timer) window.clearTimeout(start.timer);
+        callback && callback()
+      }
+    });
+    $(list[newInd]).fadeIn(400,
+    function() {
+      defaultInd = newInd;
+      count--;
+      if (count <= 0) {
+        if (start.timer) window.clearTimeout(start.timer);
+        callback && callback()
+      }
+    })
+  }
+  var next = function(callback) {
+    var newInd = defaultInd + 1;
+    if (newInd >= list.length) {
+      newInd = 0
+    }
+    change(newInd, callback)
+  }
+  var start = function() {
+    if (start.timer) window.clearTimeout(start.timer);
+    start.timer = window.setTimeout(function() {
+      next(function() {
+        start()
+      })
+    },
+    8000)
+  }
+  start();
+  $('#js_ban_button_box').on('click', 'a',
+  function() {
+    var btn = $(this);
+    if (btn.hasClass('right')) {
+      next(function() {
+        start()
+      })
+    } else {
+      var newInd = defaultInd - 1;
+      if (newInd < 0) {
+        newInd = list.length - 1
+      }
+      change(newInd,
+      function() {
+        start()
+      })
+    }
+    return false
+  })
+})();
+
+//Go top
+$(function(){
+	$(window).on('scroll',function(){
+		var st = $(document).scrollTop();
+		if( st>0 ){
+			if( $('#main-container').length != 0  ){
+				var w = $(window).width(),mw = $('#main-container').width();
+				if( (w-mw)/2 > 70 )
+					$('#go-top').css({'left':(w-mw)/2+mw+20});
+				else{
+					$('#go-top').css({'left':'auto'});
+				}
+			}
+			$('#go-top').fadeIn(function(){
+				$(this).removeClass('dn');
+			});
+		}else{
+			$('#go-top').fadeOut(function(){
+				$(this).addClass('dn');
+			});
+		}	
+	});
+	$('#go-top .go').on('click',function(){
+		$('html,body').animate({'scrollTop':0},500);
+	});
+
+	$('#go-top .uc-2vm').hover(function(){
+		$('#go-top .uc-2vm-pop').removeClass('dn');
+	},function(){
+		$('#go-top .uc-2vm-pop').addClass('dn');
+	});
+});
+</script>

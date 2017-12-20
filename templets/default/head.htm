@@ -1,0 +1,29 @@
+<div class="header">
+  <div class="header_content">
+    <div class="head-top"> <a href="/" class="header_logo"> <img src="{dede:global.cfg_templets_skin/}/images/logo.png" /></a> </div>
+    <div class="rig"><a class="e-qi" href="#" target="_blank" title="中文版">中文版</a><a class="y-qi" href="#" target="_blank" title="英文版">English</a></div>
+  </div>
+  <div class="header_menu" id="nav-menu">
+    <ul class="header_content" id="nav">
+      {dede:channelartlist typeid='top' currentstyle='hover' row=7}
+      <li class='{dede:field.currentstyle/}'><a href="{dede:field name='typeurl'/}" class="nav-a">{dede:field name='typename'/}</a>
+        <ul class="list-unstyled">
+          {dede:channel type='son' noself='yes'}
+          <li><a href="[field:typelink/]">[field:typename/]</a></li>
+          {/dede:channel}
+        </ul>
+      </li>
+      {/dede:channelartlist}
+    </ul>
+  </div>
+</div>
+<!--banner-->
+<div class="banner-wrap">
+  <div class="banner-show" id="js_ban_content"> {dede:arclist typeid='32'  row='10'}
+    <div class="cell">
+      <div class="con" style="background-image:url([field:picname/]);"> </div>
+    </div>
+    {/dede:arclist} </div>
+  <div class="banner-control" id="js_ban_button_box"> <a href="javascript:;" class="left">左</a> <a href="javascript:;" class="right">右</a> </div>
+</div>
+<!--banner end-->

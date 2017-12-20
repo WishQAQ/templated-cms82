@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+<meta name="keywords" content="{dede:field name='keywords'/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+<link rel="shortcut icon" href="{dede:global.cfg_cmsurl/}/favicon.ico"/>
+<link href="{dede:global.cfg_templets_skin/}/css/css.css" rel="stylesheet" type="text/css" />
+<link href="{dede:global.cfg_templets_skin/}/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/js/jquery-1.8.3.min.js"></script>
+<style>
+.banner-wrap, .banner-show, .banner-show .cell .con {
+	height: 150px;
+}
+.banner-control a {
+	top: 60px;
+}
+</style>
+</head>
+{dede:include filename="head.htm"/}
+<body class="jl_bodyBg" style="min-width:1170px;">
+<div class="scybox" style="overflow:visible; padding-bottom:40px;"> 
+  <!--scyweizhi开始-->
+  <div class="scyweizhi"> 
+    <!--scyweizhi开始-->
+    <div class="scyweizhis">
+      <ul>
+        <li class="s1">&nbsp;</li>
+        <li id="dqwz">{dede:field name='position'/}</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+	$(function(){
+	   $("#dqwz a:last").addClass("s2").removeAttr("");
+	   var inn=$("#dqwz").html();
+	   inn=inn.replace(/&nbsp;/g,"");
+	   $("#dqwz").html(inn)
+	});
+   </script> 
+  <!--scyweizhi结束--> 
+  <!--scymain开始-->
+  <div class="scymain" style="overflow:visible;"> {dede:include filename="left.htm"/} 
+    <!--scymainr开始-->
+    <div class="scymainr" style="overflow:visible;">
+      <div class="tpxw" style="overflow:visible;">
+        <div class="xwzx" style="overflow:visible;"> {dede:list pagesize='4' titielen='40'}
+          <div class="xwzx1">
+            <div class="xwzx1-1"> <a href="[field:arcurl/]" title="[field:title/]"><img src="[field:picname/]" width="100%" /></a> </div>
+            <div class="xwzx1-2">
+              <h2><a href="[field:arcurl/]" title="[field:title/]">[field:title/]</a></h2>
+              <p>[field:description function="cn_substr(@me,240)"/]...</p>
+              <h3><span>发布时间：[field:pubdate function="MyDate('Y-m-d',@me)"/]</span> <span>浏览次数：[field:click/]</span></h3>
+            </div>
+            <br class="clear" />
+          </div>
+          {/dede:list}
+          <div class="tpxw1-2">
+            <ul class="pagelist">
+              {dede:pagelist listitem="info,pre,next,pageno"listsize="5"/}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--scymainr结束--> 
+  <br class="clear" />
+</div>
+<!--scymain结束--> 
+{dede:include filename="footer.htm"/}
+</body>
+</html>
